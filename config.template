@@ -1,0 +1,39 @@
+global_defs {
+  router_id blocky-dns-01
+  script_user root
+  enable_script_security
+  max_auto_priority 1
+}
+
+vrrp_script check_blocky {
+  script "/usr/local/bin/check_blocky.sh"
+  interval 1
+  timeout 2
+  weight -50
+}
+
+vrrp_instance BLOCKY {
+  state ${STATE}
+  interface eth0
+  virtual_router_id 55
+  priority ${PRIORITY}
+  advert_int 1
+  unicast_src_ip ${UNICAST_SRC_IP}
+
+  unicast_peer {
+    ${UNICAST_PEER}
+  }
+
+  authentication {
+    auth_type PASS
+    auth_pass ${PASS}
+  }
+
+  virtual_ipaddress {
+    ${IPADDRESS_VIRTUAL} dev eth0
+  }
+
+  track_script {
+    check_blocky
+  }
+}
