@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends keepalived dnsutils curl ca-certificates && \
+    apt-get install -y --no-install-recommends keepalived dnsutils curl ca-certificates kmod && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
