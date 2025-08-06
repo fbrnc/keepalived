@@ -11,6 +11,7 @@ RUN curl -L -o /tmp/keepalived.tar.gz https://github.com/gen2brain/keepalived_ex
     chmod +x /usr/local/bin/keepalived_exporter && \
     rm /tmp/keepalived.tar.gz
 
+
 COPY run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 
